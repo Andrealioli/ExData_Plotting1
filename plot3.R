@@ -23,26 +23,26 @@ house_con_file$Date1 <- paste(house_con_file$Date,house_con_file$Time)
 house_con_file$Date1 <- strptime(house_con_file$Date1, format="%Y-%m-%d %H:%M:%S")
 
 #Plotting the graphic
+windows(width=10, height=10)
 house_con_file[,7] <- as.numeric(as.character(house_con_file[,7]))
 house_con_file[,8] <- as.numeric(as.character(house_con_file[,8]))
 house_con_file[,9] <- as.numeric(as.character(house_con_file[,9]))
-
 #Plotting Sub 1
 plot(house_con_file$Date1, house_con_file[,7], type="n",ylab="Energy sub metering", xlab="", cex.axis=0.9, 
      cex.lab=0.9)
 lines(house_con_file$Date1, house_con_file[,7], col="black")
-
 #Plotting Sub 2
 lines(house_con_file$Date1, house_con_file[,8], col="red")
-
 #Plotting Sub 3
 lines(house_con_file$Date1, house_con_file[,9], col="blue")
 
-#Incluiding legend
+#Incluiding a legend
 legend_names <- colnames(house_con_file)[7:9]
 legend(x="topright",legend_names, lty=c(1,1,1), lwd = c(0.5,0.5,0.5), 
        col=c("black","red", "blue"), cex=0.8)
 
 #Saving the graphic in PNG
-dev.copy(png, file="plot3.png", width = 480, height = 480, units="px")
+dev.copy(png, file="plot3.png", width = 480, height = 480, units="px", bg="white")
 dev.off()
+
+
