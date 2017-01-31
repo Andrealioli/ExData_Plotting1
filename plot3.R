@@ -23,7 +23,7 @@ house_con_file$Date1 <- paste(house_con_file$Date,house_con_file$Time)
 house_con_file$Date1 <- strptime(house_con_file$Date1, format="%Y-%m-%d %H:%M:%S")
 
 #Plotting the graphic
-windows(width=10, height=10)
+windows(width=8, height=10)
 house_con_file[,7] <- as.numeric(as.character(house_con_file[,7]))
 house_con_file[,8] <- as.numeric(as.character(house_con_file[,8]))
 house_con_file[,9] <- as.numeric(as.character(house_con_file[,9]))
