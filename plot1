@@ -1,0 +1,32 @@
+# downloading and unziping file
+url <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
+
+
+#Create a subdirectory called data and download the file
+dir.create("./project1")
+download.file(url,destfile="./project1/Dataset.zip")
+
+#Loading in the data files
+unzip("./project1/Dataset.zip",exdir="./project1")
+
+#Setting work directory
+setwd("~/project1")
+
+#Loading file
+file_path<- paste(getwd(), paste("household_power_consumption", ".txt", sep=""), sep="/")
+house_con_file <- read.table(file_path, header=TRUE, sep=";")
+#Subsetting data to February 1st and 2nd 2007 
+house_con_file$Date <- as.Date(house_con_file$Date, format="%d/%m/%Y")
+house_con_file <- subset(house_con_file, Date >= "2007-02-01" & Date<= "2007-02-02") 
+
+#Plotting the Histogram
+plot_1 <- as.numeric(as.character(house_con_file$Global_active_power))
+hist(plot_1, main= "Global Active Power",xlab="Global Active Power (kilowatts)", 
+     xlim=c(0,6), breaks = 12, col = "red", xaxt='n')
+axis(side=1, at= seq(0,6, by=2))
+
+#Saving PNG file
+dev.copy(png, file="plot1.png", width = 480, height = 480, units="px")
+dev.off()
+
+
